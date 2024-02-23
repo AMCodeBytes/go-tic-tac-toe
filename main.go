@@ -48,12 +48,13 @@ func main() {
 
 func board(boardLayout [3][3]string) {
 	fmt.Println("TicTacToe")
-	fmt.Printf("2    %v |  %v | %v \n", boardLayout[2][0], boardLayout[2][1], boardLayout[2][2])
+	fmt.Printf("2    %v |  %v | %v \n", boardLayout[0][2], boardLayout[1][2], boardLayout[2][2])
 	fmt.Printf("   -------------\n")
-	fmt.Printf("1    %v |  %v | %v \n", boardLayout[1][0], boardLayout[1][1], boardLayout[1][2])
+	fmt.Printf("1    %v |  %v | %v \n", boardLayout[0][1], boardLayout[1][1], boardLayout[2][1])
 	fmt.Printf("   -------------\n")
-	fmt.Printf("0    %v |  %v | %v \n", boardLayout[0][0], boardLayout[0][1], boardLayout[0][2])
+	fmt.Printf("0    %v |  %v | %v \n", boardLayout[0][0], boardLayout[1][0], boardLayout[2][0])
 	fmt.Printf("     0    1   2\n")
+	fmt.Println(boardLayout)
 }
 
 func move(round int) (int, int) {
