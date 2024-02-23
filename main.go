@@ -30,6 +30,13 @@ func main() {
 					boardLayout[moves[i][0]][moves[i][1]] = "O"
 				}
 
+				// Check if someone won
+				if winCheck(boardLayout) {
+					fmt.Println("-----   WINNER!   -----")
+					board(boardLayout)
+					fmt.Println("-----   WINNER!   -----")
+					return
+				}
 			}
 
 			fmt.Println("ALL MOVES EXHAUSTED")
@@ -54,7 +61,6 @@ func board(boardLayout [3][3]string) {
 	fmt.Printf("   -------------\n")
 	fmt.Printf("0    %v |  %v | %v \n", boardLayout[0][0], boardLayout[1][0], boardLayout[2][0])
 	fmt.Printf("     0    1   2\n")
-	fmt.Println(boardLayout)
 }
 
 func move(round int) (int, int) {
@@ -76,6 +82,20 @@ func move(round int) (int, int) {
 	return column, row
 }
 
-func winCheck() {
-	// Check to see if there is a winner
+func winCheck(boardLayout [3][3]string) bool {
+	// Check for diagonal win
+	if ((boardLayout[0][0] != "" || boardLayout[1][1] != "" || boardLayout[2][2] != "") && (boardLayout[0][0] == boardLayout[1][1] && boardLayout[1][1] == boardLayout[2][2])) ||
+		((boardLayout[0][2] != "" || boardLayout[1][1] != "" || boardLayout[2][0] != "") && (boardLayout[0][2] == boardLayout[1][1] && boardLayout[1][1] == boardLayout[2][0])) {
+		return true
+	}
+
+	// Check for row or column win
+	for i := 0; i < 3; i++ {
+		if ((boardLayout[i][0] != "" || boardLayout[i][1] != "" || boardLayout[i][2] != "") && (boardLayout[i][0] == boardLayout[i][1]) && (boardLayout[i][1] == boardLayout[i][2])) ||
+			((boardLayout[0][i] != "" || boardLayout[1][i] != "" || boardLayout[2][i] != "") && (boardLayout[0][i] == boardLayout[1][i]) && (boardLayout[1][i] == boardLayout[2][i])) {
+			return true
+		}
+	}
+
+	return false
 }
